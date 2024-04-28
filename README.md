@@ -14,3 +14,5 @@ composer require api
 composer require symfony/webpack-encore-bundle
 
 
+ une vidéo explicative détaillant les fonctionnalités de l'application est également disponible.
+
