@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input id="search-input" type="text" class="form-control search-bar" placeholder="Search">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="row">
+                    <div class="container">
+                        {% for genre in genres %}
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkbox{{ genre.id }}"
+                                       data-genre-id="{{ genre.id }}">
+                                <label class="custom-control-label"
+                                       for="checkbox{{ genre.id }}">{{ genre.name }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <div id="#movies-container" class="row" style="padding-top: 1rem">
+                    {% include "index/_movies.html.twig" %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

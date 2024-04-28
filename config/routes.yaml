@@ -1,0 +1,11 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+authentication_token:
+    path: /authentication_token
+    methods: ['POST']
+app_logout:
+    path: /logout
+    methods: GET

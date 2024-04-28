@@ -1,0 +1,9 @@
+twig:
+    globals:
+        tmdb_image_base_url: 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/'
+        youtube_base_url: 'https://www.youtube.com/embed/'
+    file_name_pattern: '*.twig'
+
+when@test:
+    twig:
+        strict_variables: true

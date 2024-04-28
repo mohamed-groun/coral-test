@@ -1,0 +1,37 @@
+{% for movie in movies %}
+
+    <div class="container">
+        <div class="movie-card">
+            <div class="movie-img">
+                <img class="card-img-top" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ movie.backdrop_path }}" alt="Movie Image">
+            </div>
+            <div class="movie-details">
+                <div class="movie-title text-primary">{{ movie.original_title }}</div>
+                <div class="movie-description">{{ movie.overview }}</div>
+                <div class="movie-rating">Rating: {{ movie.vote_average| round(1, 'floor') }}/10<span class="rating-text"> ({{ movie.vote_count }} votes)</span></div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal{{ movie.id}}">
+                    Lire les détails
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="Modal{{ movie.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ movie.original_title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
