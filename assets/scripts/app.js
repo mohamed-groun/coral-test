@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Send AJAX request
             fetch('/', {
-                method: 'POST', // or 'GET' depending on your controller action
+                method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     const content = document.getElementById("#movies-container")
                     if (data.content) {
-                        content.innerHTML = data.content // Handle response data if needed
+                        content.innerHTML = data.content 
                     } else {
                         content.innerHTML = "<p style='padding: 25%; '><strong>NO MOVIES</strong></p>"
                     }
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Send AJAX request
             fetch('/', {
-                method: 'POST', // or 'GET' depending on your controller action
+                method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     const content = document.getElementById("#movies-container")
                     if (data.content) {
-                        content.innerHTML = data.content // Handle response data if needed
+                        content.innerHTML = data.content 
                     } else {
                         content.innerHTML = "<p style='padding: 25%; '><strong>NO MOVIES</strong></p>"
                     }
