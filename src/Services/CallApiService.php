@@ -34,14 +34,8 @@ class CallApiService
                 ]
             ]
         );
-        $result = [];
-        foreach ($response->toArray()["results"] as &$movie) {
-            // Ajouter la clé "youtube" avec la valeur souhaitée pour chaque élément
-            $movie['trailer_youtube_key'] = $this->getMovie($movie['id']);
-            $result[] = $movie;
-        }
 
-        return $result;
+        return $this->addYoutubeKeyToMovies($response->toArray()["results"]);
     }
 
     public function getMovie($id): ?string
@@ -95,23 +89,27 @@ class CallApiService
             ]
         );
 
-        $result = [];
-        foreach ($response->toArray()["results"] as &$movie) {
-            // Ajouter la clé "youtube" avec la valeur souhaitée pour chaque élément
-            $movie['trailer_youtube_key'] = $this->getMovie($movie['id']);
-            $result[] = $movie;
-        }
-
-        return $result;
-
+        return$this->addYoutubeKeyToMovies($response->toArray()["results"]);
     }
 
-    public function formatEntiers($entiers)
+    private function formatEntiers($entiers)
     {
         if (count($entiers) === 1) {
             return $entiers[0];
         } else {
             return implode(',', $entiers);
         }
+    }
+
+    private function addYoutubeKeyToMovies(array $movies): array
+    {
+        $result = [];
+
+        foreach ($movies as &$movie) {
+            $movie['trailer_youtube_key'] = $this->getMovie($movie['id']);
+            $result[] = $movie;
+        }
+
+        return $result;
     }
 }
