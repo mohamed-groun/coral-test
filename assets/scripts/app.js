@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Send AJAX request
             fetch('/', {
-                method: 'POST', 
+                method: 'GET', 
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Send AJAX request
             fetch('/', {
-                method: 'POST', 
+                method: 'GET', 
                 headers: {
                     'Content-Type': 'application/json',
                 },
