@@ -3,16 +3,19 @@
 namespace App\Services;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use App\Helper\MovieHelper;
 
 class CallApiService
 {
     private $client;
     private $apiKey;
+    private $movieHelper;
 
-    public function __construct(HttpClientInterface $client)
+    public function __construct(HttpClientInterface $client, MovieHelper $movieHelper)
     {
         $this->client = $client;
         $this->apiKey = $_ENV['API_KEY_TMDB'];
+        $this->movieHelper = $movieHelper;
     }
 
 
@@ -29,7 +32,7 @@ class CallApiService
                     'language' => 'en-US',
                     'page' => 1,
                     'sort_by' => 'popularity.desc',
-                    'with_genres' => $this->formatEntiers($checkedCheckboxes),
+                    'with_genres' => $this->movieHelper->formatEntiers($checkedCheckboxes),
                     'api_key' => $this->apiKey
                 ]
             ]
@@ -61,7 +64,6 @@ class CallApiService
 
     public function getMoviesGender(): array
     {
-
         $response = $this->client->request(
             'GET',
             'https://api.themoviedb.org/3/genre/movie/list',
@@ -71,8 +73,8 @@ class CallApiService
                 ]
             ]
         );
-        return $response->toArray();
 
+        return $response->toArray();
     }
 
     public function getMoviesBySearch($searchText): array
@@ -89,16 +91,7 @@ class CallApiService
             ]
         );
 
-        return$this->addYoutubeKeyToMovies($response->toArray()["results"]);
-    }
-
-    private function formatEntiers($entiers)
-    {
-        if (count($entiers) === 1) {
-            return $entiers[0];
-        } else {
-            return implode(',', $entiers);
-        }
+        return $this->addYoutubeKeyToMovies($response->toArray()["results"]);
     }
 
     private function addYoutubeKeyToMovies(array $movies): array
